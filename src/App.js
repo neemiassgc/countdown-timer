@@ -2,7 +2,9 @@ import React from "react"
 import logo from './logo.svg';
 import * as time from "./time"
 import * as logic from "./logic"
+import * as storage from "./storage"
 import './App.css';
+
 
 function SVGCircle(props) {
     return (
@@ -33,8 +35,22 @@ class Countdown extends React.Component {
     }
 
     componentDidMount() {
+        let then
+
+        if (this.props.isSaved) {
+            const data = storage.get();
+            this.timerName = data.timerName
+            then = data.then
+        }
+        else {
+            this.timerName = this.props.timerName
+            then = time.parseDateTimeToMillis({date: this.props.date, time: this.props.time});
+        }
+
+        if (this.props.saveSession)
+            storage.save(then, this.timerName)
+
         this.timer = setInterval(() => {
-            const then = time.parseDateTimeToMillis(this.props.date, this.props.time)
             const now = Date.now()
             
             const countdown = time.formatTime(then - now)
@@ -58,13 +74,14 @@ class Countdown extends React.Component {
         if (isCancel && isCancel !== "") {
             const component = (<DateInput change={this.props.change}/>)
             this.props.change(component);
+            storage.clearAll()
         }
     }
 
     render() {
         const { days, hours, minutes, seconds } = this.state;
 
-        if (!days && !hours && !minutes && !seconds) clearInterval(this.timer)
+        if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) clearInterval(this.timer)
 
         const daysRadius = logic.scale(days, 365, 0, 360, 0)
         const hoursRadius = logic.scale(hours, 24, 0, 360, 0)
@@ -113,7 +130,9 @@ class Countdown extends React.Component {
                             ) : null
                         }
                         {
-                            !days && !hours && !minutes && !seconds ? <h3>It's done</h3> : null
+                            days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0
+                                ? <h3 className="font-black text-4xl">It's time for {this.timerName.toLowerCase()}</h3>
+                                : null
                         }
                     </div>
                     <div className="flex flex-wrap justify-center items-center">
@@ -132,19 +151,44 @@ class DateInput extends React.Component {
         super(props)
     }
 
-    changeScreen(event) {
-        const [date, time] = event.target.parentElement.children
-        const component = <Countdown time={time.value} date={date.value} change={this.props.change} />
+    setupTimer(event) {
+        let [timerName, date, time] =
+            [...event.target.parentElement.querySelectorAll("div > input")].map(event => event.value)
+
+        if (date === "")  {
+            alert("field 'Date' is mandatory")
+            return
+        }
+
+        if (time === "") time = "00:00"
+
+        if (timerName === "") timerName = "My event"
+
+        const component = <Countdown saveSession={this.saveSession} timerName={timerName} date={date} time={time} change={this.props.change} />
         this.props.change(component)
     }
 
     render() {
         return (
             <div className="container mx-auto">
-                <div className="flex flex-col justify-center items-center gap-7 w-1/4 mx-auto mt-10 p-5 py-10 h-42 rounded-md border border-gray-600 shadow-2xl">
-                    <input className="h-8 w-3/4 ring rounded-md" type="date" value="2021-10-24" />
-                    <input className="h-8 w-3/4 ring rounded-md" type="time" value="22:40" />
-                    <button className="bg-transparent font-black text-lg p-2 w-3/12 rounded border border-green-600 text-green-600 hover:text-white hover:bg-green-600" onClick={this.changeScreen.bind(this)}>start</button>
+                <div className="flex flex-col justify-center items-center gap-5 w-2/6 mx-auto mt-10 p-5 py-10 h-42 rounded-md shadow-2xl border border-black">
+                    <h1 className="font-black text-lg tracking-widest mb-2">Setup countdown timer</h1>
+                    <div className="w-3/4 flex flex-col justify-center items-center">
+                        <label className="block w-full text-start mb-1" >Timer name<span className="text-red-500">*</span></label>
+                        <input className="block h-9 w-full p-1 rounded-md border border-gray-600 outline-none" type="text" placeholder="My event!"/>
+                    </div>
+                    <div className="w-3/4 flex flex-col justify-center items-center">
+                        <label className="block w-full text-start mb-1" >Date<span className="text-red-500">*</span></label>
+                        <input className="block h-9 w-full rounded-md border border-gray-600 outline-none" type="date"/>
+                    </div>
+                    <div className="w-3/4">
+                        <label className="block w-full text-start mb-1" >Time</label>
+                        <input className="block h-9 w-full rounded-md border border-gray-600 outline-none" type="time"/>
+                    </div>
+                    <label className="w-3/4 text-start mb-1" >
+                        <input className="mr-2 h-4 w-4" type="checkbox" value="off" onChange={(e) => {this.saveSession = e.target.checked}}/>Save session
+                    </label>
+                    <button className="bg-transparent font-black text-lg p-2 w-3/12 rounded border border-green-600 text-green-600 hover:text-white hover:bg-green-600" onClick={this.setupTimer.bind(this)}>start</button>
                 </div>
             </div>
         );
@@ -157,8 +201,13 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
+        let component = (<DateInput change={this.handleComponent.bind(this)} />)
+
+        if (storage.isSaved())
+            component = (<Countdown isSaved={true} change={this.handleComponent.bind(this)} />)
+
         this.state = {
-            component: (<DateInput change={this.handleComponent.bind(this)} />)
+            component: component
         }
     }
 

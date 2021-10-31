@@ -1,15 +1,20 @@
 export function isSaved() {
 	return window.localStorage.getItem("then") != null
+		&& window.localStorage.getItem("timer-name") != null
 }
 
-export function getThen() {
-	return window.localStorage.getItem("then")
+export function get() {
+	return {
+		then: window.localStorage.getItem("then"),
+		timerName: window.localStorage.getItem("timer-name")
+	}
 }
 
-export function saveThen(ms) {
-	if (!isSaved()) window.localStorage.setItem("then", ms)
+export function save(then, timerName) {
+	window.localStorage.setItem("then", then)
+	window.localStorage.setItem("timer-name", timerName)
 }
 
-export function clearThen() {
+export function clearAll() {
 	window.localStorage.clear()
 }
