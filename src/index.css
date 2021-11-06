@@ -5,7 +5,7 @@
 @layer components {
 
 	.countdownItem {
-		@apply flex flex-col relative justify-center items-center m-5 leading-loose w-56 text-gray-800 text-2xl h-56
+		@apply flex flex-col relative justify-center items-center leading-loose w-56 text-gray-800 text-2xl h-56
 	}
 
 	.countdownItemSpan {

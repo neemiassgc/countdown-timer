@@ -91,7 +91,7 @@ class Countdown extends React.Component {
         return (
             <div className="container mx-auto">
                 <div>
-                    <h1 className="uppercase text-center tracking-widest mt-3 font-2xl">Countdown</h1>
+                    <h1 className="uppercase text-center tracking-widest mt-4 mb-3 font-3xl">Countdown</h1>
                     <div className="flex flex-wrap justify-center items-center gap-0">
                         {
                             days > 0 ? (
@@ -131,13 +131,11 @@ class Countdown extends React.Component {
                         }
                         {
                             days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0
-                                ? <h3 className="font-black text-4xl">It's time for {this.timerName.toLowerCase()}</h3>
+                                ? <h3 className="font-black text-4xl mt-4">It's time for {this.timerName.toLowerCase()}</h3>
                                 : null
                         }
                     </div>
-                    <div className="flex flex-wrap justify-center items-center">
-                        <button className="p-2 text-lg font-black bg-transparent hover:bg-red-600 border border-red-600 rounded-md text-red-600 hover:text-white" onClick={this.changeScreen.bind(this)}>STOP</button>
-                    </div>
+                    <button className="p-2 text-lg font-black bg-transparent hover:bg-red-600 border border-red-600 rounded-md text-red-600 hover:text-white block mx-auto my-4" onClick={this.changeScreen.bind(this)}>STOP</button>
                 </div>
             </div>
         );
@@ -171,7 +169,7 @@ class DateInput extends React.Component {
     render() {
         return (
             <div className="container mx-auto">
-                <div className="flex flex-col justify-center items-center gap-5 w-2/6 mx-auto mt-10 p-5 py-10 h-42 rounded-md shadow-2xl border border-black">
+                <div className="flex flex-col justify-center items-center gap-5 w-11/12 sm:w-2/3 lg:w-3/6 xl:w-1/3 mx-auto mt-10 p-5 py-10 h-42 rounded-md shadow-2xl border border-black">
                     <h1 className="font-black text-lg tracking-widest mb-2">Setup countdown timer</h1>
                     <div className="w-3/4 flex flex-col justify-center items-center">
                         <label className="block w-full text-start mb-1" >Timer name<span className="text-red-500">*</span></label>
