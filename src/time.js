@@ -1,4 +1,4 @@
-export function parseDateTimeToMillis( { date, time } ) {
+export function parseToMillis( { date, time } ) {
 	const [year, month, day] = date.split("-").map(i => +i);
 	const [hours, minutes] = time.split(":").map(i => +i);
 

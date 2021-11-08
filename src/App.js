@@ -1,5 +1,5 @@
 import React from "react"
-import * as time from "./time"
+import * as timeUtils from "./time"
 import * as logic from "./logic"
 import * as storage from "./storage"
 import './App.css';
@@ -43,8 +43,9 @@ class Countdown extends React.Component {
         }
         else {
             this.timerName = this.props.timerName
-            then = time.parseDateTimeToMillis({date: this.props.date, time: this.props.time});
+            then = timeUtils.parseToMillis({date: this.props.date, time: this.props.time});
         }
+
 
         if (this.props.saveSession)
             storage.save(then, this.timerName)
@@ -52,7 +53,7 @@ class Countdown extends React.Component {
         this.timer = setInterval(() => {
             const now = Date.now()
             
-            const countdown = time.formatTime(then - now)
+            const countdown = timeUtils.formatTime(then - now)
 
             this.setState({
                 days: countdown.days,
@@ -149,17 +150,23 @@ class DateInput extends React.Component {
     }
 
     setupTimer(event) {
+        const YEAR = 31536e6;
+
         let [timerName, date, time] =
             [...event.target.parentElement.querySelectorAll("div > input")].map(event => event.value)
-
-        if (date === "")  {
-            alert("field 'Date' is mandatory")
-            return
-        }
 
         if (time === "") time = "00:00"
 
         if (timerName === "") timerName = "My event"
+
+        if (date === "")  {
+            alert("Field 'Date' is mandatory");
+            return;
+        }
+        else if (timeUtils.parseToMillis({date: date, time: time}) - Date.now() >= YEAR) {
+            alert("Date cannot be more than one year")
+            return;
+        }
 
         const component = <Countdown saveSession={this.saveSession} timerName={timerName} date={date} time={time} change={this.props.change} />
         this.props.change(component)
