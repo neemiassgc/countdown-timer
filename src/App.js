@@ -1,5 +1,4 @@
 import React from "react"
-import logo from './logo.svg';
 import * as time from "./time"
 import * as logic from "./logic"
 import * as storage from "./storage"
