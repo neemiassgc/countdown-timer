@@ -4,7 +4,6 @@ import * as logic from "./logic"
 import * as storage from "./storage"
 import './App.css';
 
-
 function SVGCircle(props) {
     return (
         <div>
@@ -147,6 +146,10 @@ class DateInput extends React.Component {
 
     constructor(props) {
         super(props)
+
+        this.state = {
+            warningModal: false
+        }
     }
 
     setupTimer(event) {
@@ -175,24 +178,24 @@ class DateInput extends React.Component {
     render() {
         return (
             <div className="container mx-auto">
-                <div className="flex flex-col justify-center items-center gap-5 w-11/12 sm:w-2/3 lg:w-3/6 xl:w-1/3 mx-auto mt-10 p-5 py-10 h-42 rounded-md shadow-2xl border border-black">
-                    <h1 className="font-black text-lg tracking-widest mb-2">Setup countdown timer</h1>
-                    <div className="w-3/4 flex flex-col justify-center items-center">
-                        <label className="block w-full text-start mb-1" >Timer name<span className="text-red-500">*</span></label>
-                        <input className="block h-9 w-full p-1 rounded-md border border-gray-600 outline-none" type="text" placeholder="My event!"/>
-                    </div>
-                    <div className="w-3/4 flex flex-col justify-center items-center">
-                        <label className="block w-full text-start mb-1" >Date<span className="text-red-500">*</span></label>
-                        <input className="block h-9 w-full rounded-md border border-gray-600 outline-none" type="date"/>
+                <div className="flex flex-col justify-center items-center gap-5 w-11/12 sm:w-2/3 lg:w-3/6 xl:w-1/3 mx-auto mt-10 p-5 py-10 h-42">
+                    <h1 className="font-black text-gray-600 text-2xl tracking-widest mb-2 border-b-2 w-full p-2 text-center">Countdown timer</h1>
+                    <div className="w-3/4">
+                        <label className="block w-full text-start mb-1 text-gray-500" >Timer name*</label>
+                        <input className="block h-9 w-full p-5 outline rounded-md border" type="text" placeholder="My event"/>
                     </div>
                     <div className="w-3/4">
-                        <label className="block w-full text-start mb-1" >Time</label>
-                        <input className="block h-9 w-full rounded-md border border-gray-600 outline-none" type="time"/>
+                        <label className="block w-full text-start mb-1 text-gray-500" >Date*</label>
+                        <input className="block h-9 w-full p-5 outline rounded-md border" type="date" placeholder="date"/>
                     </div>
-                    <label className="w-3/4 text-start mb-1" >
+                    <div className="w-3/4">
+                        <label className="block w-full text-start mb-1 text-gray-500" >Time</label>
+                        <input className="block h-9 w-full p-5 outline rounded-md border" type="time"/>
+                    </div>
+                    <label className="w-3/4 text-start mb-1 text-gray-500" >
                         <input className="mr-2 h-4 w-4" type="checkbox" value="off" onChange={(e) => {this.saveSession = e.target.checked}}/>Save session
                     </label>
-                    <button className="bg-transparent font-black text-lg p-2 w-3/12 rounded border border-green-600 text-green-600 hover:text-white hover:bg-green-600" onClick={this.setupTimer.bind(this)}>start</button>
+                    <button className="bg-transparent mt-3 font-black text-lg p-2 w-3/12 rounded border border-green-600 text-green-600 hover:text-white hover:bg-green-600" onClick={this.setupTimer.bind(this)}>start</button>
                 </div>
             </div>
         );
