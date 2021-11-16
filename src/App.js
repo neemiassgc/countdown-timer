@@ -259,10 +259,10 @@ class App extends React.Component {
         }
     }
 
-    handleComponent(compoent, event) {
+    handleComponent(component, event) {
         this.setState(
             {
-                component: compoent
+                component: component
             }
         )
     }
