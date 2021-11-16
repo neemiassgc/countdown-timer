@@ -29,7 +29,11 @@ class Countdown extends React.Component {
             days: undefined,
             hours: undefined,
             minutes: undefined,
-            seconds: undefined
+            seconds: undefined,
+            promptModal: {
+                active: false,
+                msg: null
+            }
         }
     }
 
@@ -68,14 +72,21 @@ class Countdown extends React.Component {
         clearInterval(this.timer)
     }
 
-    changeScreen(event) {
-        const isCancel = window.confirm("Are you sure?")
+    showPrompt(msg) {
+        this.setState(prev => {
+            return {
+                promptModal: {
+                    active: !prev.promptModal.active,
+                    msg: msg
+                }
+            }
+        })
+    }
 
-        if (isCancel && isCancel !== "") {
-            const component = (<DateInput change={this.props.change}/>)
-            this.props.change(component);
-            storage.clearAll()
-        }
+    removeSession() {
+        const component = (<DateInput change={this.props.change}/>)
+        storage.clearAll()
+        this.props.change(component);
     }
 
     render() {
@@ -135,8 +146,22 @@ class Countdown extends React.Component {
                                 : null
                         }
                     </div>
-                    <button className="p-2 text-lg font-black bg-transparent hover:bg-red-600 border border-red-600 rounded-md text-red-600 hover:text-white block mx-auto my-4" onClick={this.changeScreen.bind(this)}>STOP</button>
+                    <button className="p-2 text-lg font-black bg-transparent hover:bg-red-600 border border-red-600 rounded-md text-red-600 hover:text-white block mx-auto my-4"
+                        onClick={
+                            () => {
+                                const msg = "Are you sure? You're going to remove your active session"
+                                this.showPrompt(msg)
+                            }
+                        }>STOP</button>
                 </div>
+                {
+                    this.state.promptModal.active ?
+                    <Prompt
+                        toggle={this.showPrompt.bind(this)}
+                        comfirm={this.removeSession.bind(this)}
+                        msg={this.state.promptModal.msg} /> :
+                    null
+                }
             </div>
         );
     }
@@ -157,7 +182,7 @@ class DateInput extends React.Component {
     }
 
     showWarning(msg) {
-        this.setState( (prev) => {
+        this.setState( prev => {
             return {
                 warningModal: {
                     active: !prev.warningModal.active,
