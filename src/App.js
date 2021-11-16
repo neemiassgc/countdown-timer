@@ -3,6 +3,7 @@ import * as timeUtils from "./time"
 import * as logic from "./logic"
 import * as storage from "./storage"
 import './App.css';
+import { Warning, Prompt } from './modal.js'
 
 function SVGCircle(props) {
     return (
@@ -148,8 +149,22 @@ class DateInput extends React.Component {
         super(props)
 
         this.state = {
-            warningModal: false
+            warningModal: {
+                active: false,
+                msg: null
+            }
         }
+    }
+
+    showWarning(msg) {
+        this.setState( (prev) => {
+            return {
+                warningModal: {
+                    active: !prev.warningModal.active,
+                    msg: msg
+                }
+            }
+        })
     }
 
     setupTimer(event) {
@@ -163,11 +178,11 @@ class DateInput extends React.Component {
         if (timerName === "") timerName = "My event"
 
         if (date === "")  {
-            alert("Field 'Date' is mandatory");
+            this.showWarning("Field 'Date' is mandatory")
             return;
         }
         else if (timeUtils.parseToMillis({date: date, time: time}) - Date.now() >= YEAR) {
-            alert("Date cannot be more than one year")
+            this.showWarning("Date cannot be more than one year")
             return;
         }
 
@@ -197,6 +212,7 @@ class DateInput extends React.Component {
                     </label>
                     <button className="bg-transparent mt-3 font-black text-lg p-2 w-3/12 rounded border border-green-600 text-green-600 hover:text-white hover:bg-green-600" onClick={this.setupTimer.bind(this)}>start</button>
                 </div>
+                { this.state.warningModal.active ? <Warning toggle={this.showWarning.bind(this)} msg={this.state.warningModal.msg} /> : null }
             </div>
         );
     }
