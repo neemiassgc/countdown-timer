@@ -4,6 +4,7 @@ import * as logic from "./logic"
 import * as storage from "./storage"
 import './App.css';
 import { Warning, Prompt } from './modal.js'
+import logo from "./logo.svg"
 
 function SVGCircle(props) {
     return (
@@ -218,8 +219,12 @@ class DateInput extends React.Component {
     render() {
         return (
             <div className="container mx-auto">
-                <div className="flex flex-col justify-center items-center gap-5 w-11/12 sm:w-2/3 lg:w-3/6 xl:w-1/3 mx-auto mt-10 p-5 py-10 h-42">
-                    <h1 className="font-black text-gray-600 text-2xl tracking-widest mb-2 border-b-2 w-full p-2 text-center">Countdown timer</h1>
+                <div className="flex flex-col justify-center items-center gap-5 w-11/12 sm:w-2/3 lg:w-3/6 xl:w-1/3 mx-auto mt-10 py-8 h-42 border-0 sm:border rounded-md shadow-none sm:shadow-md">
+                    <div className="w-full h-full flex flex-col items-center">
+                        <img src={logo} className="w-2/6 h-2/6" alt="logo" />
+                        <h1 className="font-black text-gray-500 text-2xl tracking-widest mb-2">Countdown timer</h1>
+                        <p className="font-black text-gray-500 tracking-widest">Setup</p>
+                    </div>
                     <div className="w-3/4">
                         <label className="block w-full text-start mb-1 text-gray-500" >Timer name*</label>
                         <input className="block h-9 w-full p-5 outline rounded-md border" type="text" placeholder="My event"/>
