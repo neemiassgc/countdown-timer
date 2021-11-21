@@ -5,7 +5,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/neemiassgc/front-end)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/neemiassgc/countdown-timer)
 ![GitHub last commit](https://img.shields.io/github/last-commit/neemiassgc/countdown-timer)
-<a href="https://forgepass.web.app">
+<a href="https://reactcountdown.web.app">
   <img src="https://img.shields.io/static/v1?label=host&message=Firebase&color=orange&logo=firebase"/>
 </a>
 
