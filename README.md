@@ -25,7 +25,7 @@ The objective of Countdown Timer is to provide a continuously decrementing displ
 <img src="./countdown-preview.gif" width="800" height="420"/>
 
 ## Demo :joystick:
-Demo available here: [here](https://reactcountdown.web.app/)
+Demo available [here](https://reactcountdown.web.app/)
 
 ## Technologies :hammer_and_wrench:
 > <img height="42" alt="html" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/html5.svg"/>
