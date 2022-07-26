@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/static/v1?label=host&message=Firebase&color=orange&logo=firebase"/>
 </a>
 
-The objective of Countdown Timer is to provide a continuously decrementing display of the he months, days, hours, minutes, and seconds to a user entered event.
+The objective of Countdown Timer is to provide a continuously decrementing display of the months, days, hours, minutes, and seconds to a user entered event.
 
 ## User stories :clipboard:
 - [x] User can see an alert when the event is reached
