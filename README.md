@@ -28,18 +28,18 @@ The objective of Countdown Timer is to provide a continuously decrementing displ
 Demo available [here](https://reactcountdown.web.app/)
 
 ## Technologies :hammer_and_wrench:
-> <img height="42" alt="html" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/html5.svg"/>
-> <img height="42" alt="css3" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/css3.svg"/>
-> <img height="42" alt="javascript" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/javascript.svg"/>
-> <img height="42" alt="firebase" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/firebase.svg"/>
-> <img height="42" alt="npm" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/npm.svg"/>
-> <img height="42" alt="json" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/json.svg"/>
-> <img height="42" alt="react" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/react.svg"/>
-> <img height="42" alt="tailwindcss" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/tailwindcss.svg"/>
-> <img height="42" alt="babel" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/babel.svg"/>
-> <img height="42" alt="webpack" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/webpack.svg"/>
-> <img height="42" alt="node" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/nodedotjs.svg"/>
-> <img height="42" alt="vscode" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/svg/visualstudiocode.svg"/>
+> <img height="42" alt="html" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/html5.svg"/>
+> <img height="42" alt="css3" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/css3.svg"/>
+> <img height="42" alt="javascript" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/javascript.svg"/>
+> <img height="42" alt="firebase" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/firebase.svg"/>
+> <img height="42" alt="npm" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/npm.svg"/>
+> <img height="42" alt="json" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/json.svg"/>
+> <img height="42" alt="react" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/react.svg"/>
+> <img height="42" alt="tailwindcss" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/tailwindcss.svg"/>
+> <img height="42" alt="babel" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/babel.svg"/>
+> <img height="42" alt="webpack" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/webpack.svg"/>
+> <img height="42" alt="node" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/nodedotjs.svg"/>
+> <img height="42" alt="vscode" width="42" src="https://static-content-c7a9e.firebaseapp.com/icons/visualstudiocode.svg"/>
 
 ## Run locally :computer:
 The command `npm start` runs the app in the development mode.
